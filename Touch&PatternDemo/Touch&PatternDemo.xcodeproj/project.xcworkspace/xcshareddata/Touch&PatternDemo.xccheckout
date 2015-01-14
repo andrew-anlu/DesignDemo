@@ -10,6 +10,8 @@
 	<string>Touch&amp;PatternDemo</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
+		<key>34B065E6F5B2BAD807FD33B2C211AAADC895B23C</key>
+		<string>https://github.com/andrew-anlu/DesignDemo.git</string>
 		<key>8823226A0A966D98176A3918991952EA70AAD1BD</key>
 		<string>https://github.com/andrew-anlu/iosDemo.git</string>
 	</dict>
@@ -17,17 +19,27 @@
 	<string>Touch&amp;PatternDemo/Touch&amp;PatternDemo.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>8823226A0A966D98176A3918991952EA70AAD1BD</key>
+		<key>34B065E6F5B2BAD807FD33B2C211AAADC895B23C</key>
 		<string>../../..</string>
+		<key>8823226A0A966D98176A3918991952EA70AAD1BD</key>
+		<string>../../../../iosDemo</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/andrew-anlu/iosDemo.git</string>
+	<string>https://github.com/andrew-anlu/DesignDemo.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>8823226A0A966D98176A3918991952EA70AAD1BD</string>
+	<string>34B065E6F5B2BAD807FD33B2C211AAADC895B23C</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>34B065E6F5B2BAD807FD33B2C211AAADC895B23C</string>
+			<key>IDESourceControlWCCName</key>
+			<string>DesignDemo</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>

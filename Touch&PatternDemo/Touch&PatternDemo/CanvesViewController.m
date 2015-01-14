@@ -14,6 +14,7 @@
 #import "PaterViewGenerate.h"
 #import "ClothViewGenerator.h"
 
+#import "drawScribbleCommand.h"
 //#import "PaperCanvasViewGenerator.h"
 
 @interface CanvesViewController ()
@@ -89,7 +90,25 @@
         id<Mark> newStroke=[[Stroke alloc]init];
         [newStroke setColor:_strokeColor];
         [newStroke setSize:_strokeSize];
-        [_scribble addMark:newStroke shouldAddToPreviousMark:NO];
+//    1️⃣   [_scribble addMark:newStroke shouldAddToPreviousMark:NO];
+        
+//    2️⃣    NSInvocation *drawInvocation=[self drawScribbleInvocation];
+//        [drawInvocation setArgument:&newStroke atIndex:2];
+//        
+//        NSInvocation *undrwaInvocation=[self undrawScribbleInvocation];
+//        [undrwaInvocation setArgument:&newStroke atIndex:2];
+//        
+//        //execute the draw command with the undraw command
+//        [self executeInvocation:drawInvocation withUndoInvocation:undrwaInvocation];
+        
+//     3️⃣用命令模式实现撤销和恢复
+        
+        NSDictionary *userinfo=@{ScribbleObjectUserInfoKey:_scribble,
+                                 MARKOBJECTINFoKEY:newStroke,
+                                 AddToPreviousMarkUserInfoKey:[NSNumber numberWithBool:NO]};
+        drawScribbleCommand *command=[[drawScribbleCommand alloc]init];
+        [command setUserInfo:userinfo];
+        [self executeCommand:command prepareForUndo:YES];
     }
     CGPoint thisPoint=[[touches anyObject]locationInView:_canvasView];
     //创建一个顶点
@@ -113,7 +132,21 @@
         [singleDot setColor:_strokeColor];
         [singleDot setSize:_strokeSize];
         
-        [_scribble addMark:singleDot shouldAddToPreviousMark:NO];
+//  1.      [_scribble addMark:singleDot shouldAddToPreviousMark:NO];
+        
+//  2.      NSInvocation *drawInvocation=[self drawScribbleInvocation];
+//        [drawInvocation setArgument:&singleDot atIndex:2];
+//        
+//        NSInvocation *undrawInvocation=[self undrawScribbleInvocation];
+//        [undrawInvocation setArgument:&singleDot atIndex:2];
+//        [self executeInvocation:drawInvocation withUndoInvocation:undrawInvocation];
+//  3.用命令模式
+        NSDictionary *userinfo=@{ScribbleObjectUserInfoKey:_scribble,
+                                 MARKOBJECTINFoKEY:singleDot,
+                                 AddToPreviousMarkUserInfoKey:[NSNumber numberWithBool:NO]};
+        drawScribbleCommand *command=[[drawScribbleCommand alloc]init];
+        [command setUserInfo:userinfo];
+        [self executeCommand:command prepareForUndo:YES];
     }
     // reset the start point here
     _startPoint = CGPointZero;
@@ -154,5 +187,121 @@
 
 
 
+#pragma mark
+#pragma mark--Draw Scribble Invocation Generation Methods
+-(NSInvocation *)drawScribbleInvocation{
+    NSMethodSignature *executeMethodSignature=[_scribble methodSignatureForSelector:@selector(addMark:shouldAddToPreviousMark:)];
+    
+    NSInvocation *drawInvocation=[NSInvocation invocationWithMethodSignature:executeMethodSignature];
+    [drawInvocation setTarget:_scribble];
+    [drawInvocation setSelector:@selector(addMark:shouldAddToPreviousMark:)];
+    BOOL attachToPreviousMark=NO;
+    [drawInvocation setArgument:&attachToPreviousMark atIndex:3];
+    return drawInvocation;
+}
+-(NSInvocation *)undrawScribbleInvocation{
+    NSMethodSignature *unexecuteMethodSignature=[_scribble methodSignatureForSelector:@selector(removeMark:)];
+    NSInvocation *undrawInvocation=[NSInvocation invocationWithMethodSignature:unexecuteMethodSignature];
+    [undrawInvocation setTarget:_scribble];
+    [undrawInvocation setSelector:@selector(removeMark:)];
+    
+    return undrawInvocation;
+}
+
+#pragma mark Draw Scribble Command Methods
+
+- (void) executeInvocation:(NSInvocation *)invocation
+        withUndoInvocation:(NSInvocation *)undoInvocation
+{
+    [invocation retainArguments];
+    
+    [[self.undoManager prepareWithInvocationTarget:self]
+     unexecuteInvocation:undoInvocation
+     withRedoInvocation:invocation];
+    
+    [invocation invoke];
+}
+
+- (void) unexecuteInvocation:(NSInvocation *)invocation
+          withRedoInvocation:(NSInvocation *)redoInvocation
+{
+    [[self.undoManager prepareWithInvocationTarget:self]
+     executeInvocation:redoInvocation
+     withUndoInvocation:invocation];
+    
+    [invocation invoke];
+}
+
+#pragma mark
+#pragma mark--命令的模式实现撤销和恢复
+-(void)executeCommand:(Comman *)command prepareForUndo:(BOOL)prepareForUndo{
+    if(prepareForUndo){
+       //懒加载undoStack_
+        if(_undoStack==nil){
+            _undoStack=[[NSMutableArray alloc]initWithCapacity:LEVELSOFUNDOS];
+        }
+        //如果撤销栈满了,就丢掉栈底的元素
+        if([_undoStack count]==LEVELSOFUNDOS){
+            [_undoStack dropButtom];
+        }
+        //把命令压入撤销栈
+        [_undoStack push:command];
+    }
+    [command execute];
+}
+
+-(void)undoCommand{
+    Comman *command=[_undoStack pop];
+    [command undo];
+    
+    [_undoStack removeObject:command];
+    //把命令压入恢复栈
+    if(_redoStack==nil){
+        _redoStack=[[NSMutableArray  alloc]initWithCapacity:LEVELSOFUNDOS];
+    }
+    [_redoStack push:command];
+    
+}
+-(void)redoCommand{
+    Comman *command=[_redoStack pop];
+    [command execute];
+    
+    [_redoStack removeObject:command];
+    
+    [_undoStack push:command];
+}
 
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

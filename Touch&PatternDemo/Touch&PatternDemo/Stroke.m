@@ -40,7 +40,6 @@
 -(void)removeMark:(id<Mark>)mark{
     
     if([children containsObject:mark]){
-    
         [children removeObject:mark];
     }else{
         [children makeObjectsPerformSelector:@selector(removeObject:) withObject:mark];

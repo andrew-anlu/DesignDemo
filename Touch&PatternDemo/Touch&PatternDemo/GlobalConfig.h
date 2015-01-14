@@ -28,4 +28,10 @@
 #define TOPBGCOLOR RGBACOLOR(97, 172, 90, 1)
 #define COLOR_BGVIEW RGBACOLOR(240, 240, 240, 1)
 
+#define ScribbleObjectUserInfoKey @"userinfoKey"
+#define AddToPreviousMarkUserInfoKey @"markUserInfoKey"
+#define MARKOBJECTINFoKEY @"markkey"
+#define LEVELSOFUNDOS 10
+
+
 #endif

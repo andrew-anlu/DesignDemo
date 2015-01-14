@@ -64,8 +64,10 @@ static CoordinationViewController *sharedCoordinator;
     item4.tag=kButtonTagOpenPlatterView;
     //undo
     UIBarButtonItem *item5=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"undo"] style:UIBarButtonItemStylePlain target:self action:@selector(itemClick:)];
+    item5.tag=kUNDO;
     //redo
     UIBarButtonItem *item6=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"redo"] style:UIBarButtonItemStylePlain target:self action:@selector(itemClick:)];
+    item6.tag=kREDO;
     
     toolBar.items=@[startItem,item1,startItem,item2,startItem,item3,startItem,item4,startItem,item5,startItem,item6,endItem];
     
@@ -89,10 +91,19 @@ static CoordinationViewController *sharedCoordinator;
                 ThumbnailViewController *controller=[[ThumbnailViewController alloc]init];
                 [_canvasViewController presentViewController:controller animated:YES completion:nil];
                 _activeViewcontroller=_canvasViewController;
-            
+            }
+                break;
+            case kUNDO:
+            {
+//                [_canvasViewController.undoManager undo];
+                [_canvasViewController undoCommand];
             }
                 break;
                 
+            case kREDO:
+//               [ _canvasViewController.undoManager redo];
+                [_canvasViewController redoCommand];
+                break;
             default:{
                [_canvasViewController dismissViewControllerAnimated:YES completion:^{
                    

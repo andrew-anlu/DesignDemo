@@ -11,6 +11,7 @@
 #import "CanvasView.h"
 #import "NSMutableArray+Stack.h"
 #import "CanvasViewGenerator.h"
+#import "Comman.h"
 
 @interface CanvesViewController : UIViewController
 
@@ -27,4 +28,18 @@
 
 - (void) executeInvocation:(NSInvocation *)invocation withUndoInvocation:(NSInvocation *)undoInvocation;
 - (void) unexecuteInvocation:(NSInvocation *)invocation withRedoInvocation:(NSInvocation *)redoInvocation;
+
+/*! MacBook Pro 2015-01-14 15:08 编辑
+ *  @brief  命令的模式实现撤销和恢复
+ *
+ *  @param command        命令
+ *  @param prepareForUndo <#prepareForUndo description#>
+ *
+ *  @since <#version number#>
+ */
+-(void)executeCommand:(Comman *)command prepareForUndo:(BOOL)prepareForUndo;
+-(void)undoCommand;
+-(void)redoCommand;
+@property (nonatomic,strong)NSMutableArray *undoStack;
+@property (nonatomic,strong)NSMutableArray *redoStack;
 @end

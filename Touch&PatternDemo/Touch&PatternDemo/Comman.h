@@ -9,19 +9,20 @@
 #import <Foundation/Foundation.h>
 
 @interface Comman : NSObject
+
 @property (nonatomic,strong)NSDictionary *userInfo;
 
 /*!
  *  @brief  执行方法
  *
- *  @since <#version number#>
+ *  @since
  */
 -(void) execute;
 
 /*!
  *  @brief  撤销的方法
  *
- *  @since <#version number#>
+ *  @since
  */
 -(void) undo;
 

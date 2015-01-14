@@ -14,7 +14,9 @@
 typedef enum {
     kButtonTagDene,
     kButtonTagOpenPlatterView,
-    kButtonTagOpenThumbnailView
+    kButtonTagOpenThumbnailView,
+    kUNDO,
+    kREDO
 }ButtonTag;
 
 @interface CoordinationViewController : UIViewController

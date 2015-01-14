@@ -13,6 +13,7 @@
 		650941DD19DA917C00B1DA7A /* NSMutableArray+Stack.m in Sources */ = {isa = PBXBuildFile; fileRef = 650941DC19DA917C00B1DA7A /* NSMutableArray+Stack.m */; };
 		650941E019DA97D900B1DA7A /* CanvasView.m in Sources */ = {isa = PBXBuildFile; fileRef = 650941DF19DA97D900B1DA7A /* CanvasView.m */; };
 		650941E319DA989B00B1DA7A /* MarkRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 650941E219DA989B00B1DA7A /* MarkRenderer.m */; };
+		65A96A631A6649B90075C8DE /* drawScribbleCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A96A621A6649B90075C8DE /* drawScribbleCommand.m */; };
 		65DB54F11A64CA7E00526B0A /* Scribble.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DB54F01A64CA7E00526B0A /* Scribble.m */; };
 		65DB54F51A64CD3C00526B0A /* CanvasViewGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DB54F41A64CD3C00526B0A /* CanvasViewGenerator.m */; };
 		65DB54F81A64CD6700526B0A /* PaterViewGenerate.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DB54F71A64CD6700526B0A /* PaterViewGenerate.m */; };
@@ -75,6 +76,8 @@
 		650941DF19DA97D900B1DA7A /* CanvasView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CanvasView.m; sourceTree = "<group>"; };
 		650941E119DA989B00B1DA7A /* MarkRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarkRenderer.h; sourceTree = "<group>"; };
 		650941E219DA989B00B1DA7A /* MarkRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarkRenderer.m; sourceTree = "<group>"; };
+		65A96A611A6649B90075C8DE /* drawScribbleCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = drawScribbleCommand.h; sourceTree = "<group>"; };
+		65A96A621A6649B90075C8DE /* drawScribbleCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = drawScribbleCommand.m; sourceTree = "<group>"; };
 		65DB54EF1A64CA7E00526B0A /* Scribble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scribble.h; sourceTree = "<group>"; };
 		65DB54F01A64CA7E00526B0A /* Scribble.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scribble.m; sourceTree = "<group>"; };
 		65DB54F31A64CD3C00526B0A /* CanvasViewGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CanvasViewGenerator.h; sourceTree = "<group>"; };
@@ -278,7 +281,7 @@
 				65E9226719DA3D63000E61FA /* CompositePrototype */,
 				65E9BFC419D8113A00FD05B8 /* Views */,
 				65E9BFB719D802DE00FD05B8 /* ViewControllers */,
-				65E9BFB019D7FFF600FD05B8 /* Comman */,
+				65E9BFB019D7FFF600FD05B8 /* Command */,
 				65E9BF9C19D7F46F00FD05B8 /* GlobalConfig.h */,
 				65E9BF6C19D7EC0E00FD05B8 /* AppDelegate.h */,
 				65E9BF6D19D7EC0E00FD05B8 /* AppDelegate.m */,
@@ -335,7 +338,7 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
-		65E9BFB019D7FFF600FD05B8 /* Comman */ = {
+		65E9BFB019D7FFF600FD05B8 /* Command */ = {
 			isa = PBXGroup;
 			children = (
 				65E9BFB119D8000500FD05B8 /* Comman.h */,
@@ -344,8 +347,10 @@
 				65E9BFB519D800A400FD05B8 /* SetStrokeSizeCommand.m */,
 				65E9BFC119D8070700FD05B8 /* SetStrokeColorCommand.h */,
 				65E9BFC219D8070700FD05B8 /* SetStrokeColorCommand.m */,
+				65A96A611A6649B90075C8DE /* drawScribbleCommand.h */,
+				65A96A621A6649B90075C8DE /* drawScribbleCommand.m */,
 			);
-			name = Comman;
+			name = Command;
 			sourceTree = "<group>";
 		};
 		65E9BFB719D802DE00FD05B8 /* ViewControllers */ = {
@@ -491,6 +496,7 @@
 				650941DD19DA917C00B1DA7A /* NSMutableArray+Stack.m in Sources */,
 				65E9BFB619D800A400FD05B8 /* SetStrokeSizeCommand.m in Sources */,
 				65E9BFBA19D802F800FD05B8 /* CanvesViewController.m in Sources */,
+				65A96A631A6649B90075C8DE /* drawScribbleCommand.m in Sources */,
 				650941D919DA90C000B1DA7A /* MarkEnumerator.m in Sources */,
 				65E9227919DA4539000E61FA /* Vertex.m in Sources */,
 				65DB54F11A64CA7E00526B0A /* Scribble.m in Sources */,
