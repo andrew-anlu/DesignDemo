@@ -15,6 +15,8 @@ typedef enum {
     kButtonTagDene,
     kButtonTagOpenPlatterView,
     kButtonTagOpenThumbnailView,
+    kButtonTagSave,
+    kButtonTagDELETE,
     kUNDO,
     kREDO
 }ButtonTag;

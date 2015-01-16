@@ -168,8 +168,15 @@
 }
 
 -(void)setStrokeSize:(CGFloat)strokeSize{
-    if(strokeSize==0){
-        _strokeSize=2;
+    // enforce the smallest size
+    // allowed
+    if (strokeSize < 5.0)
+    {
+        _strokeSize = 5.0;
+    }
+    else
+    {
+        _strokeSize = strokeSize;
     }
 }
 

@@ -8,8 +8,12 @@
 
 #import "CoordinationViewController.h"
 #import  "PaletteViewController.h"
-
-
+#import "ThumbnailViewController.h"
+#import "Comman.h"
+#import "CommandBarItem.h"
+#import "DeleteScribbleCommand.h"
+#import "SaveScribbleCommand.h"
+#import "OpenScribbleCommand.h"
 @interface CoordinationViewController (){
   
 }
@@ -53,12 +57,16 @@ static CoordinationViewController *sharedCoordinator;
 
     
     //回收站
-    UIBarButtonItem *item1=[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(itemClick:)];
-    
+    CommandBarItem *item1=[[CommandBarItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(itemClick:)];
+    item1.command=[[DeleteScribbleCommand alloc]init];
+    item1.tag=kButtonTagDELETE;
     //保存
-    UIBarButtonItem *item2=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"save"] style:UIBarButtonItemStylePlain target:self action:@selector(itemClick:)];
+    CommandBarItem *item2=[[CommandBarItem alloc]initWithImage:[UIImage imageNamed:@"save"] style:UIBarButtonItemStylePlain target:self action:@selector(itemClick:)];
+    item2.tag=kButtonTagSave;
+    item2.command=[[SaveScribbleCommand alloc]init];
     //打开
-    UIBarButtonItem *item3=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"open"] style:UIBarButtonItemStylePlain target:self action:@selector(itemClick:)];
+    CommandBarItem *item3=[[CommandBarItem alloc]initWithImage:[UIImage imageNamed:@"open"] style:UIBarButtonItemStylePlain target:self action:@selector(itemClick:)];
+    item3.tag=kButtonTagOpenThumbnailView;
     //颜色
     UIBarButtonItem *item4=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"palette"] style:UIBarButtonItemStylePlain target:self action:@selector(itemClick:)];
     item4.tag=kButtonTagOpenPlatterView;
@@ -91,6 +99,12 @@ static CoordinationViewController *sharedCoordinator;
                 ThumbnailViewController *controller=[[ThumbnailViewController alloc]init];
                 [_canvasViewController presentViewController:controller animated:YES completion:nil];
                 _activeViewcontroller=_canvasViewController;
+            }
+                break;
+            case kButtonTagSave:
+            case kButtonTagDELETE:{
+                CommandBarItem *commandBtn=(CommandBarItem *)sender;
+                [commandBtn.command execute];
             }
                 break;
             case kUNDO:

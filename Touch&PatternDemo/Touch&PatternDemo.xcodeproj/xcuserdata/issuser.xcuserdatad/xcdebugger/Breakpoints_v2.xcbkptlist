@@ -4,18 +4,28 @@
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            scope = "0"
+            stopOnStyle = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Touch&amp;PatternDemo/CanvesViewController.m"
-            timestampString = "442915326.117449"
+            filePath = "Touch&amp;PatternDemo/OpenScribbleCommand.m"
+            timestampString = "443091392.452657"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "254"
-            endingLineNumber = "254"
-            landmarkName = "-undoCommand"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "-initWithScribbleSource:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,13 +35,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Touch&amp;PatternDemo/CanvesViewController.m"
-            timestampString = "442915327.546347"
+            filePath = "Touch&amp;PatternDemo/ThumbnailViewController.m"
+            timestampString = "443091408.990679"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "266"
-            endingLineNumber = "266"
-            landmarkName = "-redoCommand"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Touch&amp;PatternDemo/ScribbleManager.m"
+            timestampString = "443091471.595382"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "-scribbleThumbnailViewAtIndex:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

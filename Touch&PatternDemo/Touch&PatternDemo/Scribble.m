@@ -10,6 +10,7 @@
 #import "Scribble.h"
 #import "Stroke.h"
 
+
 @interface Scribble()
 @property (nonatomic, retain) id <Mark> mark;
 
@@ -61,8 +62,62 @@
     
 }
 
+#pragma mark
+#pragma mark--Mementor methods
+-(id)initWithMemenTo:(ScribbleMemento *)aMemento{
+    self=[super init];
+    if(self){
+        if([aMemento hasCompleteSnapshot]){//如果有缩略图
+            [self setMark:[aMemento mark]];
+        }else{
+            parentMark_=[[Stroke alloc]init];
+            [self attachStateFromMemento:aMemento];
+        }
+    }
+    return self;
+}
+
+-(void)attachStateFromMemento:(ScribbleMemento *)memento{
+    [self addMark:[memento mark] shouldAddToPreviousMark:NO];
+}
+
+-(ScribbleMemento *)scribbleMementoWithCompleteSanpshot:(BOOL)hasCompleteSnapshot{
+    id<Mark> mementoMark=incrementalMark_;
+    if(hasCompleteSnapshot){
+        mementoMark=parentMark_;
+    }
+    else if(mementoMark==nil){
+        return nil;
+    }
+    ScribbleMemento *memento=[[ScribbleMemento alloc]initWithMark:mementoMark];
+    [memento setHasCompleteSnapshot:hasCompleteSnapshot];
+    return memento;
+}
+-(ScribbleMemento *)scribbleMemento{
+    return [self scribbleMementoWithCompleteSanpshot:YES];
+}
+
++(Scribble *)scribbleWithMemento:(ScribbleMemento *)aMemento{
+    Scribble *scribble=[[Scribble alloc]initWithMemenTo:aMemento];
+    return scribble;
+}
+
+
+
 
 @end
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

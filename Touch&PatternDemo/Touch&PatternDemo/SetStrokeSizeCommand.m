@@ -18,7 +18,7 @@
     CoordinationViewController *coordinator=[CoordinationViewController sharedInstance];
     CanvesViewController *canvasViewcontroller=coordinator.canvasViewController;
     
-
+    [canvasViewcontroller setStrokeSize:strokeSize];
     
 }
 @end

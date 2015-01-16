@@ -127,6 +127,8 @@
     _sizeSlider=[[CommandSlider alloc]initWithFrame:CGRectMake(CGRectGetMaxX(smallImgView.frame), CGRectGetMaxY(_paletteView.frame)+20, 200, 30)];
     [self.view addSubview:_sizeSlider];
     _sizeSlider.command=sizeCommand;
+    _sizeSlider.minimumValue=3;
+    _sizeSlider.maximumValue=50;
     [_sizeSlider addTarget:self action:@selector(onCommandSliderValueChanged:) forControlEvents:UIControlEventValueChanged];
     
     
